@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="~/fontawesome/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="~/css/navbar.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <main>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarsExample03">
+                        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                            <li>
+                                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="User" asp-action="Login">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="TaskDetail" asp-action="Index"><i size class="fa fa-home fa-2x"></i><span class="sr-only">(current)</span></a>
+                            </li>
+                            <li>
+                                <a class="nav-link active" href="/TaskDetail/Menuebar" style="margin-right:-13px; color:lightgray" >Master</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="/TaskDetail/Menuebar" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="TaskType" asp-action="Index">Task Type</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Status" asp-action="Index">Status</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Sprint" asp-action="Index">Sprint</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="ApplicationType" asp-action="Index">Application Type</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Project" asp-action="Index">Project</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <form>
+                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </main>
+        <script src="~/js/bootstrap.bundle.min.js"></script>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            <div class="container">  
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Rathor - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @if (IsSectionDefined("Scripts"))
+    {
+        @RenderSection("Scripts", required: true);
+    }
+    @*@await RenderSectionAsync("Scripts", required: false)*@
+</body>
+</html>

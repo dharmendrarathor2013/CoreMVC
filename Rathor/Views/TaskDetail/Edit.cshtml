@@ -1,0 +1,164 @@
+﻿@model Rathor.Models.TaskUserViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+@{
+    Layout = "_Layout";
+}
+
+<form method="post">
+    <input asp-for="TaskDetail.TaskID" hidden />
+    <input asp-for="TaskDetail.CreateDate" hidden />
+    <input asp-for="TaskDetail.CreatedBy" hidden />
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <h2 class="text-info pl-3"> Edit Task</h2>
+
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.Title"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="TaskDetail.Title" class="form-control" />
+                        <span asp-validation-for="TaskDetail.Title" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.Discription"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="TaskDetail.Discription" class="form-control" />
+                        <span asp-validation-for="TaskDetail.Discription" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.Sprint.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="TaskDetail.SprintId" class="form-control">
+                            @foreach (var item in Model.SprintList)
+                            {
+                                <option value="@item.SprintId">@item.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="TaskDetail.SprintId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.TypeID"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="TaskDetail.TypeID" class="form-control">
+                            @foreach (var item in Model.TaskTypeList)
+                            {
+                                <option value="@item.TypeID">@item.Name</option>
+
+                            }
+                        </select>
+                        <span asp-validation-for="TaskDetail.TypeID" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.StatusId">Status</label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="TaskDetail.StatusId" class="form-control">
+                            @foreach (var item in Model.StatusList)
+                            {
+                                <option value="@item.StatusId">@item.Name</option>
+
+                            }
+                        </select>
+                        <span asp-validation-for="TaskDetail.StatusId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.AssignyId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="TaskDetail.AssignyId" class="form-control">
+
+                            @foreach (var item in Model.UserList)
+                            {
+                                <option value="@item.AssignyId">@item.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="TaskDetail.AssignyId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.Hours"></label>
+                    </div>
+                    <div style="margin-left:15px" ;>
+                        <input asp-for="TaskDetail.Hours" class="form-control" maxlength="4" />
+                        <span asp-validation-for="TaskDetail.Hours" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.StartDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="TaskDetail.StartDate" class="form-control" />
+                        <span asp-validation-for="TaskDetail.StartDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="TaskDetail.EndDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="TaskDetail.EndDate" class="form-control" />
+                        <span asp-validation-for="TaskDetail.EndDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Update" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">
+                                <i class="fas fa-sign-out-alt"></i>Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @*keep this empty*@
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

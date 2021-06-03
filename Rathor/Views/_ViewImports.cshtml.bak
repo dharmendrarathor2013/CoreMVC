@@ -1,0 +1,3 @@
+﻿@using Rathor
+@using Rathor.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

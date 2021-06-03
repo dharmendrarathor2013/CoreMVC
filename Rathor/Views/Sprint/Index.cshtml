@@ -1,0 +1,96 @@
+﻿@model Rathor.Models.TaskUserList
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "_Layout";
+}
+
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col p-6">
+            <h2 class="text-primary">Sprint List</h2>
+        </div>
+        <div class="col 6 text-right">
+            <a asp-controller="Sprint" asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> &nbsp;  Create New Sprint
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @*@if (Model.Count() > 0)
+        {*@
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    SprintId
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Project
+                </th>
+                <th>
+                    StartDate
+                </th>
+                <th>
+                    EndDate
+                </th>
+                <th width="20%" style="padding-left:50px;">
+                    Operations
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Sprint)
+            {
+                <tr>
+                    <td>@item.SprintId</td>
+                    <td>@item.Name</td>
+
+                    <td>
+                        @if (item.projectId != null)
+                        {
+                            int assign = Convert.ToInt32(item.projectId);
+
+                            @foreach (var v in Model.Project)
+                            {
+                                int id = Convert.ToInt32(v.projectId);
+                                if (id == assign)
+                                {
+                                    @v.Title
+                                }
+                            }
+
+
+                        }
+                    </td>
+                    <td>@item.StartDate.ToString("dd-MM-yyyy")</td>
+                    <td>@item.EndDate.ToString("dd-MM-yyyy")</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Sprint" asp-route-Id="@item.SprintId" asp-action="Edit" class="btn btn-primary mx-2">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-controller="Sprint" asp-route-Id="@item.SprintId" asp-action="Delete" class="btn btn-danger mx-2">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*}
+        else
+        {
+            <p>No Sprint Exits.</p>
+        }*@
+
+</div>
+
+

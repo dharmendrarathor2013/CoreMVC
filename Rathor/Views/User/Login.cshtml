@@ -1,0 +1,103 @@
+﻿@model Rathor.Models.User
+@{
+    ViewData["Title"] = "Login";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    @*<style>
+        .login-register {
+            overflow: scroll; /* Alowing the card to scroll */
+            padding: 5% 0; /*For shifting your card at the top of the page */
+        }
+        .login-box {
+            width: 800px; 
+        }
+    </style>*@
+    <!--Made with love by Mutiullah Samim -->
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="~/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <!--Custom styles-->
+    <link href="~/css/TaskLogin/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sign In</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="Login" asp-controller="User">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                       <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            
+                                <input type="email" class="form-control" asp-for="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                           
+                       </div>
+                        <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="password" asp-for="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Remember Me
+                        </div>
+
+                        <div>
+                            <p style="color:red">
+                                @ViewBag.error
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <div class="w-75 btn-group" role="group">
+                                <button type="submit" value="Login">Login<i class="fas fa-sign-in-alt"></i></button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    Don't have an account?<a href="/User/Signup" target="_blank">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="/User/ForgotPassword" target="_blank">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+@section Scripts
+{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+}
+
+

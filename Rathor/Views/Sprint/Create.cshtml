@@ -1,0 +1,102 @@
+﻿@model Rathor.Models.TaskUserViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+@{
+    Layout = "_Layout";
+}
+<html>
+<head>
+    @*<h1> @ViewBag.success</h1>*@
+</head>
+<body>
+
+    <form method="post" id="form">
+        <input asp-for="Sprint.SprintId" hidden />
+        <div class="border p-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <h2 class="text-info pl-3"> Create Sprint</h2>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Sprint.Name"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Sprint.Name" class="form-control" />
+                            <span asp-validation-for="Sprint.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label>Project</label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="Sprint.projectId">
+                                @if (Model.ProjectList != null)
+                                {
+                                    foreach (var item in Model.ProjectList)
+                                    {
+                                        <option value="@item.projectId">@item.Title</option>
+
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Sprint.StartDate"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Sprint.StartDate" class="form-control" id="StartDate" />
+                            <span asp-validation-for="Sprint.StartDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Sprint.EndDate"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Sprint.EndDate" class="form-control" id="EndDate" />
+                            <span asp-validation-for="Sprint.EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-8 offset-4 row">
+
+                            <div class="col">
+                                <input type="submit" class="btn btn-info w-100" value="Submit" />
+                            </div>
+
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success w-100">
+                                    <i class="fas fa-sign-out-alt"></i>Back
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    @*keep this empty*@
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

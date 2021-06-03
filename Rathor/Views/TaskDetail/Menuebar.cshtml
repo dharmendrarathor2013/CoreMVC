@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Rathor.Models.MenueDetails>
+@{
+    ViewData["Title"] = "Menu";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+            <div class="col-sm-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title (@item.RecordsCount)</h5>
+                        <p class="card-text">
+                            <div style="text-align:justify">
+                                @item.Discription
+                            </div>
+                        </p>
+                        
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">
+                            <p style="color:antiquewhite">
+                                <a href="@item.URL" class="btn-close-white" style="text-decoration: none">View more..</a>
+                            </p>
+                        </small>
+                    </div>
+                </div>
+            </div>
+     }
+</div>

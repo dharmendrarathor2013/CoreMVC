@@ -1,0 +1,108 @@
+﻿@model Rathor.Models.TaskUserList
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "_Layout";
+}
+
+<h1><i class="fas fa-user-secret"></i>@ViewBag.sessionv</h1>
+<h1>@ViewBag.test</h1>
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col p-6">
+            <h2 class="text-primary">Task List</h2>
+        </div>
+        <div class="col">
+            <a asp-action="ChangePassword" asp-controller="User" class="btn btn-primary" target="_blank">
+                <i class="fas fa-edit"></i>  Change Password
+            </a>
+        </div>
+        <div class="col 6 text-right">
+            <a asp-controller="taskdetail" asp-action="create" class="btn btn-primary" target="_blank">
+                <i class="fas fa-plus"></i> &nbsp;  Create New Task
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>TaskId</th>
+                <th>Title</th>
+                <th>Discription</th>
+                <th>Sprint</th>
+                <th style="text-align:center">Task Type</th>
+                <th>Status</th>
+                <th>Assignee</th>
+                <th>Hours</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>CreateDate</th>
+                <th>LastModificationDate</th>
+                <th width="20%" style="padding-left:50px;">
+                    Operations
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.TaskDetail)
+            {
+                <tr class="tr1">
+                    <td>@item.TaskID</td>
+                    <td>@item.Title</td>
+                    <td>@item.Discription</td>
+                    <td>@item.Sprint.Name</td>
+                    <td>@item.TaskType.Name</td>
+                    <td>@item.Status.Name</td>
+                    <td>@item.User.Name</td>
+                    <td>@item.Hours</td>
+                    <td>@item.StartDate.ToString("dd-MM-yyyy")</td>
+                    <td>@item.EndDate.ToString("dd-MM-yyyy")</td>
+                    <td>@item.CreateDate</td>
+                    <td>@item.LastModificationDate</td>
+                    
+                        @*@foreach (var file in item.Files.FilePath)
+                        {
+
+                            <div class="w-75 btn-group" role="group">
+                                @{
+                                        var data = file;
+                                    <a href="~/Uploaded_files/@data" target="_blank" class="btn btn-primary mx-2"> <i class="fas fa-file-download"></i></a>
+                                }
+                            </div>
+                        }*@
+
+                    @*@foreach (var file in Model.Files)
+                {
+
+                    <div class="w-75 btn-group" role="group">
+                        @{
+                            var data = file.FilePath;
+                            <a href="~/Uploaded_files/@data" target="_blank" class="btn btn-primary mx-2"> <i class="fas fa-file-download"></i></a>
+                        }
+                    </div>
+                }*@
+                    @*<a asp-controller="taskdetail" asp-route-id="@item.TaskID" asp-action="Download" target="_blank" class="btn btn-primary mx-2">
+                    <i class="fas fa-file-download"></i>
+                </a>*@
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="taskdetail" asp-route-id="@item.TaskID" asp-action="edit" class="btn btn-primary mx-2">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-controller="taskdetail" asp-route-id="@item.TaskID" asp-action="delete" class="btn btn-danger mx-2" target="_blank">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+           
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,250 @@
+﻿@model Rathor.Models.TaskUserViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+@{
+    Layout = "_Layout";
+}
+<html>
+<head>
+     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <form method="post" id="configform" enctype="multipart/form-data" name="Text1">
+        <input asp-for="TaskDetail.TaskID" hidden />
+        <div class="border p-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <h2 class="text-info pl-3"> Create Task</h2>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.Title"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="TaskDetail.Title" class="form-control" />
+                            <span asp-validation-for="TaskDetail.Title" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.Discription"></label>
+                        </div>
+                        <div class="col-8">
+                            <textarea rows="3" cols="63" asp-for="TaskDetail.Discription" class="form-control"></textarea>
+                            <span asp-validation-for="TaskDetail.Discription" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                    @*<div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.SprintId">Sprint</label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="TaskDetail.SprintId" class="form-control" asp-items="@ViewBag.Sprint">
+                                <option value="" disabled selected>Please Select</option>
+                            </select>
+                            <span asp-validation-for="TaskDetail.SprintId" class="text-danger"></span>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.TypeID"></label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="TaskDetail.TypeID" class="form-control" asp-items="@ViewBag.TaskType">
+                                <option value="" disabled selected>Please Select</option>
+                            </select>
+                            <span asp-validation-for="TaskDetail.TypeID" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.StatusId">Status</label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="TaskDetail.StatusId" class="form-control" asp-items="@ViewBag.Status">
+                                <option value="" disabled selected>Please Select</option>
+                            </select>
+                            <span asp-validation-for="TaskDetail.StatusId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.AssignyId"></label>
+                        </div>
+                        <div class="col-8">
+                            <select asp-for="TaskDetail.AssignyId" class="form-control" asp-items="@ViewBag.User">
+                                <option value="" disabled selected>Please Select</option>
+                            </select>
+                            <span asp-validation-for="TaskDetail.AssignyId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.Hours"></label>
+                        </div>
+                        <div style="margin-left:15px" ;>
+                            <input asp-for="TaskDetail.Hours" class="form-control" maxlength="4" />
+                            <span asp-validation-for="TaskDetail.Hours" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.StartDate"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="TaskDetail.StartDate" class="form-control" id="StartDate" />
+                            <span asp-validation-for="TaskDetail.StartDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="TaskDetail.EndDate"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="TaskDetail.EndDate" class="form-control" id="EndDate" />
+                            <span asp-validation-for="TaskDetail.EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <p style="color:red">
+                            @TempData["shortMessage"]
+                        </p>
+                    </div>
+
+        <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Files"></label>
+                        </div>
+            <div class="col-8">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" asp-for="Files" multiple id="files" name="files" />
+                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    <div id="selectedFiles"></div>
+                </div>
+                <span asp-validation-for="Files" class="text-danger"></span>
+            </div>
+        </div>
+                    @*<div class="col-xs-12">
+                        <div class="col-md-12">
+                            <div id="field">
+                                <div id="field0">
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            <input type="file" asp-for="Files" multiple id="action_json" name="action_json" class="input-file" accept=".txt,.json">
+                                            <div id="action_jsondisplay"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <button id="add-more" name="add-more" class="btn btn-primary" asp-action="Create" >Add More</button>
+                                </div>
+                            </div>
+                            <br><br>
+                        </div>
+                    </div>*@
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Submit" />
+                        </div>
+                        <div class="col">
+                            <input type="reset" id="configreset" class="btn btn-info w-100" value="Reset" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">
+                                Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>                                  
+        </div>
+       
+        <script>
+            // Show File Details
+            var selDiv = "";
+
+            document.addEventListener("DOMContentLoaded", init, false);
+
+            function init() {
+                document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+                selDiv = document.querySelector("#selectedFiles");
+            }
+
+            function handleFileSelect(e) {
+
+                if (!e.target.files) return;
+
+                selDiv.innerHTML = "";
+
+                var files = e.target.files;
+                for (var i = 0; i < files.length; i++) {
+                    var f = files[i];
+
+                    selDiv.innerHTML += f.name + " ";
+                    selDiv.innerHTML += parseInt((f.size / 1024)) + "KB" + "<br/>";
+                }
+            }
+            // Reset form
+            $('#configreset').click(function () {
+                $('#configform')[0].reset();
+            });
+
+            // Add More
+    //       $(document).ready(function () {
+    //var next = 0;
+    //$("#add-more").click(function(e){
+    //    e.preventDefault();
+    //    var addto = "#field" + next;
+    //    var addRemove = "#field" + (next);
+    //    next = next + 1;
+    //    var newIn = ' <div id="field'+ next +'" name="field'+ next +'"><!-- File Button --> <div class="form-group"> <div class="col-md-4"> <input id="action_json" name="action_json" class="input-file" type="file multiple"> </div></div></div>';
+    //    var newInput = $(newIn);
+    //    var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >Remove</button></div></div><div id="field">';
+    //    var removeButton = $(removeBtn);
+    //    $(addto).after(newInput);
+    //    $(addRemove).after(removeButton);
+    //    $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+    //    $("#count").val(next);
+
+    //        $('.remove-me').click(function(e){
+    //            e.preventDefault();
+    //            var fieldNum = this.id.charAt(this.id.length-1);
+    //            var fieldID = "#field" + fieldNum;
+    //            $(this).remove();
+    //            $(fieldID).remove();
+    //        });
+    //});
+
+    // });
+        </script>
+    </form>
+</body>
+</html>
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
