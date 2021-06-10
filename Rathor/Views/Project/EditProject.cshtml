@@ -1,36 +1,35 @@
-﻿@model Rathor.Models.ProjectInfo
+﻿@model Rathor.Models.TaskUserViewModel
 @{
     Layout = "_Layout";
 }
 <div class="row">
     <form method="post">
-        <input asp-for="_projectInfo.projectId" hidden />
-        <input asp-for="_projectInfo.CreateDate" hidden />
+        <input asp-for="Project.projectId" hidden />
+        <input asp-for="Project.CreateDate" hidden />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="col-md-6">
             <h3>Project Name</h3>
         </div>
         <div class="col-md-6">
-            <input type="text" asp-for="_projectInfo.Title" />
+            <input type="text" asp-for="Project.Title" />
         </div>
         <div class="col-md-6">
             <h3>Description</h3>
         </div>
         <div class="col-md-6">
 
-            <input type="text" asp-for="_projectInfo.Description" />
+            <input type="text" asp-for="Project.Description" />
         </div>
         <div class="col-md-6">
             <h3>AssignId on:</h3>
         </div>
 
         <div class="col-md-6">
-            <select asp-for="_projectInfo.AssignyId">
+            <select asp-for="Project.AssignyId">
 
-                @foreach (var item in Model.userlist)
+                @foreach (var item in Model.UserList)
                 {
                     <option value="@item.AssignyId">@item.Name</option>
-
                 }
             </select>
 
@@ -40,18 +39,17 @@
         </div>
         <div class="col-md-6">
 
-            <input type="date" asp-for="_projectInfo.StartDate" />
+            <input type="date" asp-for="Project.StartDate" />
         </div>
         <div class="col-md-6">
             <h3>EndDate</h3>
         </div>
         <div class="col-md-6">
 
-            <input type="date" asp-for="_projectInfo.EndDate" />
+            <input type="date" asp-for="Project.EndDate" />
         </div>
         <div class="col-md-6">
             <button type="submit">submit</button>
-
         </div>
         <div class="col-md-6">
             <button type="reset">reset</button>

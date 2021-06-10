@@ -4,57 +4,124 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/fontawesome/css/all.css" />
     <!-- Bootstrap core CSS -->
     <link href="~/fontawesome/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="~/css/navbar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+
+    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <style id="compiled-css" type="text/css">
+        .dropdown-menu { float:right;
+        }
+
+        .right-submenu {
+            float: none;
+        }
+
+            .right-submenu > .dropdown-menu {
+                border-radius: 6px 0px 6px 6px;
+                right: auto;
+                margin-right: 10px;
+                right: 98%;
+            }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: left;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 5px 5px 0;
+            border-right-color: #cccccc;
+            margin-top: 5px;
+            margin-left: -10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <main>
-            <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarsExample03">
-                        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-                            <li>
-                                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="User" asp-action="Login">Logout</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="TaskDetail" asp-action="Index"><i size class="fa fa-home fa-2x"></i><span class="sr-only">(current)</span></a>
-                            </li>
-                            <li>
-                                <a class="nav-link active" href="/TaskDetail/Menuebar" style="margin-right:-13px; color:lightgray" >Master</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="/TaskDetail/Menuebar" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false"></a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="TaskType" asp-action="Index">Task Type</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Status" asp-action="Index">Status</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Sprint" asp-action="Index">Sprint</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="ApplicationType" asp-action="Index">Application Type</a></li>
-                                    <li><a class="dropdown-item" asp-area="" asp-controller="Project" asp-action="Index">Project</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <form>
-                            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                        </form>
-                    </div>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarsExample03">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-area="" asp-controller="TaskDetail" asp-action="Index"><i size class="fa fa-home fa-2x" style="color:white"></i><span class="sr-only">(current)</span></a>
+                    </li>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px;">
+
+                        <li class="dropdown-submenu right-submenu">
+                            <a tabindex="-1" style="text-decoration:none" asp-area="" asp-controller="Project" asp-action="Cards"> Project</a> <li class="nav-item dropdown">
+                        </li>
+                        <li>
+                            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+
+                                <li>
+                                    <a class="nav-link active" href="/TaskDetail/Menuebar" style="margin-right:-13px; color:blue">Master</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a style="color:blue" class="nav-link dropdown-toggle" href="/TaskDetail/Menuebar" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="TaskType" asp-action="Index">Task Type</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="Status" asp-action="Index">Status</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="Sprint" asp-action="Index">Sprint</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
+                                        <li><a class="dropdown-item" asp-area="" asp-controller="ApplicationType" asp-action="Index">Application Type</a></li>
+                                        @*<li><a class="dropdown-item" asp-area="" asp-controller="Project" asp-action="Index">Create Project</a></li>*@
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
-        </main>
-        <script src="~/js/bootstrap.bundle.min.js"></script>
+            </div>
+        </nav>
+                    @*<main>
+                        <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
+                            <div class="container-fluid">
+                                <div class="collapse navbar-collapse" id="navbarsExample03">
+                                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" asp-area="" asp-controller="TaskDetail" asp-action="Index"><i size class="fa fa-home fa-2x"></i><span class="sr-only">(current)</span></a>
+                                        </li>
+
+                                        <li>
+                                            <a class="nav-link active" href="/TaskDetail/Menuebar" style="margin-right:-13px; color:lightgray">Master</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="/TaskDetail/Menuebar" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="TaskType" asp-action="Index">Task Type</a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="Status" asp-action="Index">Status</a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="Sprint" asp-action="Index">Sprint</a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Category</a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="ApplicationType" asp-action="Index">Application Type</a></li>
+                                                <li><a class="dropdown-item" asp-area="" asp-controller="Project" asp-action="Index">Create Project</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                    <form>
+                                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                    </form>
+                                    <div>
+                                        <a class="nav-link active" aria-current="page" asp-area="" asp-controller="User" asp-action="Login" style="color:aliceblue">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </main>*@
+                    <script src="~/js/bootstrap.bundle.min.js"></script>
     </header>
 
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
-            <div class="container">  
+            <div class="container">
             </div>
         </main>
     </div>

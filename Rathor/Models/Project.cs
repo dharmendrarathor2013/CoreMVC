@@ -16,7 +16,7 @@ namespace Rathor.Models
             {
                 this.User = Db.User.Where(x => x.AssignyId == this.AssignyId).FirstOrDefault();
             }
-           // Sprints = new HashSet<Sprint>();
+            Sprints = new HashSet<Sprint>();
         }
         [Key]
         [Required]

@@ -25,7 +25,11 @@ namespace Rathor.Controllers
             _db = db;
             this.hostingEnvironment = hostingEnvironment;
         }
-        
+
+        public IActionResult Test()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             ViewBag.sessionv = HttpContext.Session.GetString("Test");
@@ -33,7 +37,7 @@ namespace Rathor.Controllers
             TaskUserList taskuserlist = new TaskUserList();
             taskuserlist.TaskDetail = _db.TaskDetail.ToList();
            
-           // taskuserlist.Sprint = _db.Sprint.ToList();
+            taskuserlist.Sprint = _db.Sprint.ToList();
             taskuserlist.User = _db.User.ToList();
             taskuserlist.TaskType = _db.TaskType.ToList();
             taskuserlist.Status = _db.Status.ToList();
@@ -132,10 +136,9 @@ namespace Rathor.Controllers
         public IActionResult Create()
         {
             TaskUserViewModel tasklist = new();
-            //TaskDetail TaskDetail = _db.TaskDetail.FirstOrDefault();
-          //  ViewBag.Sprint = new SelectList(_db.Sprint.ToList(), "SprintId", "Name");
+            ViewBag.Sprint = new SelectList(_db.Sprint.ToList(), "SprintId", "Name");
             ViewBag.TaskType = new SelectList(_db.TaskType.ToList(), "TypeID", "Name");
-            //ViewBag.TaskDetail = new SelectList(_db.TaskDetail.ToList(), "TaskId", "Title", "Discription", "Hours", "StartDate", "EndDate");
+            ViewBag.TaskDetail = new SelectList(_db.TaskDetail.ToList(), "TaskId", "Title");
             ViewBag.User = new SelectList(_db.User.ToList(), "AssignyId", "Name");
             ViewBag.Status = new SelectList(_db.Status.ToList(), "StatusId", "Name");
 
@@ -203,7 +206,7 @@ namespace Rathor.Controllers
             tasklist.UserList = _db.User.ToList();
             tasklist.StatusList = _db.Status.ToList();
             tasklist.TaskTypeList = _db.TaskType.ToList();
-         //   tasklist.SprintList = _db.Sprint.ToList();
+            tasklist.SprintList = _db.Sprint.ToList();
 
             //if (tasklist.TaskDetail == null && tasklist.UserList == null && tasklist.TaskTypeList == null && tasklist.StatusList == null && tasklist.SprintList == null)
             //{

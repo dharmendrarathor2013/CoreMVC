@@ -1,0 +1,77 @@
+﻿@model Rathor.Models.SprintDetails
+
+@*@model Rathor.Models.TaskUserViewModel*@
+  
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "_Layout";
+}
+
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col p-6">
+            <h2 class="text-primary">
+             @ViewBag.ProjectTitle
+            </h2>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @*@if (Model.Count() > 0)
+        {*@
+    <table class="table table-bordered table-striped" style="width:100%">
+        
+        <tbody>
+           @foreach(var item in Model.SprintList)
+           { 
+            <tr>
+                <td><h3>@item.Name</h3>
+                    <details>
+                        <Div>
+                            @if (item.SprintId != null)
+                            {
+                                int assign = Convert.ToInt32(item.SprintId);
+
+                                @foreach (var v in Model.TaskDetailList)
+                                {
+                                    int id = Convert.ToInt32(v.SprintId);
+                                    if (id == assign)
+                                    {
+                                       <div> <p><br><span>TaskID: @v.TaskID</span><br>
+                                        <span>Title: @v.Title</span><br>
+                                        <span>Discription: @v.Discription</span><br>
+                                        <span>
+                                            Assigny: @if (v.TaskID != null)
+                                            {
+                                                @foreach (var v1 in Model.UserList)
+                                                {   
+                                                    if (v.AssignyId==v1.AssignyId)
+                                                    {
+                                                        @v1.Name
+                                                    }
+                                                }
+                                            }
+                                         </span></p>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </Div>
+                    </details>
+                </td>
+            </tr>
+           }
+        </tbody>
+    </table>
+    @*}
+        else
+        {
+            <p>No Sprint Exits.</p>
+        }*@
+
+</div>
+
+

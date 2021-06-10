@@ -1,0 +1,62 @@
+﻿@model Rathor.Models.TaskUserList
+@{
+    ViewData["Title"] = "Menu";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <form method="post">
+        
+        @{
+            var count = Model.Project.Count();
+        }
+        @foreach (var item in Model.Project)
+        {
+            var P_id = item.projectId;
+            <div class="col-sm-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5><a style="color: white; text-decoration:none" asp-area="" asp-controller="Project" asp-action="CreateProject"> Create Project</a></h5>
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">
+                                <div style="text-align:justify">
+                                    @item.Description
+                                </div>
+                            </p>
+                            <p class="card-text">
+                                <div style="text-align:justify">
+                                    @if (item.AssignyId != null)
+                                    {
+                                        int assign = Convert.ToInt32(item.AssignyId);
+
+                                        @foreach (var v in Model.User)
+                                        {
+                                            int id = Convert.ToInt32(v.AssignyId);
+                                            if (id == assign)
+                                            {
+                                                <span>User: </span>@v.Name
+                                            }
+                                        }
+                                    }
+
+
+                                </div>
+                            </p>
+
+</div>
+                    
+                    
+                        <div class="card-footer">
+                            <small class="text-muted">
+                                    @Html.ActionLink("View more", "Sprint", "Project", new { @id = P_id }, null)
+                            </small>
+                        </div>
+                    
+                </div>
+            </div>
+        }
+        </form>
+</div>

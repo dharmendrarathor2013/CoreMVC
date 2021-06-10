@@ -1,15 +1,10 @@
-﻿@model Rathor.Models.ViewProject
+﻿@model Rathor.Models.TaskUserList
 
 @{
     ViewData["Title"] = "ViewProject";
     Layout = "_Layout";
 }
 
-<h1>Create Project Page</h1>
-
-<p>
-    <a asp-action="CreateProject">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -22,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model._projectInfo)
+        @foreach (var item in Model.Project)
         {
             <tr>
                 <td>

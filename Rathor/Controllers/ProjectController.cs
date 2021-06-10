@@ -35,18 +35,57 @@ namespace Rathor.Controllers
             //{
             //    return View("Login", "User");
             //}   
-            ViewProject projectList = new ViewProject();
+            TaskUserList projectList = new TaskUserList();
 
             projectList.User = _db.User.ToList();
-            projectList._projectInfo = _db.Project.ToList();
+            projectList.Project = _db.Project.ToList();
             return View(projectList);
+        }
+        //Get Cards
+        public IActionResult Cards(int? id)
+        {
+            TaskUserList projectList = new TaskUserList();
+
+            projectList.User = _db.User.ToList();
+            projectList.Project = _db.Project.ToList();
+            return View(projectList);
+        }
+        
+        // Get Sprint deatils 
+        public IActionResult Sprint(int? id)
+        {
+            var data = _db.Project.Where(x => x.projectId == id).FirstOrDefault();
+
+            if (data != null)
+            {
+                ViewBag.ProjectTitle = data.Title;
+            }
+
+            SprintDetails sprintlist = new SprintDetails();
+
+            sprintlist.SprintList = _db.Sprint.Where(t => t.projectId == id).ToList();
+            sprintlist.TaskDetailList = _db.TaskDetail.ToList();
+            sprintlist.UserList = _db.User.ToList();
+            
+            return View(sprintlist);   
+        }
+
+        //Get Task List
+         
+        public IActionResult TaskList()
+        {
+            SprintDetails sprintlist = new SprintDetails();
+            sprintlist.TaskDetailList = _db.TaskDetail.ToList();
+            sprintlist.UserList = _db.User.ToList();
+            sprintlist.StatusList = _db.Status.ToList();
+            return View(sprintlist);
         }
         // Get-Create
         public IActionResult CreateProject()
         {
-            ProjectInfo projectList = new ProjectInfo();
+            TaskUserViewModel projectList = new TaskUserViewModel();
 
-            projectList.userlist = _db.User.ToList();
+            projectList.UserList = _db.User.ToList();
 
             return View(projectList);
 
@@ -54,9 +93,9 @@ namespace Rathor.Controllers
         //Post-Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateProject(ProjectInfo data)
+        public IActionResult CreateProject(TaskUserViewModel data)
         {
-            var obj = data._projectInfo;
+            var obj = data.Project;
 
             obj.CreateDate = DateTime.Now;
             obj.LastModification = DateTime.Now;
@@ -72,11 +111,11 @@ namespace Rathor.Controllers
             {
                 return NotFound();
             }
-            ProjectInfo projectlist = new();
-            projectlist._projectInfo  = _db.Project.Find(id);
-            projectlist.userlist = _db.User.ToList();
+            TaskUserViewModel projectlist = new();
+            projectlist.Project  = _db.Project.Find(id);
+            projectlist.UserList = _db.User.ToList();
 
-            if (projectlist._projectInfo == null && projectlist.userlist == null)
+            if (projectlist.Project == null && projectlist.UserList == null)
             {
                 return NotFound();
             }
@@ -86,11 +125,11 @@ namespace Rathor.Controllers
         // Post - Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditProject(ProjectInfo data)
+        public IActionResult EditProject(TaskUserViewModel data)
         {
-            data._projectInfo.LastModification = DateTime.Now;
-            data._projectInfo.UpdateBy = data._projectInfo.AssignyId;
-            var obj = data._projectInfo;
+            data.Project.LastModification = DateTime.Now;
+            data.Project.UpdateBy = data.Project.AssignyId;
+            var obj = data.Project;
             _db.Project.Update(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
@@ -98,11 +137,11 @@ namespace Rathor.Controllers
         // Get - Delete
         public IActionResult DeleteProject(int? id)
         {
-            ProjectInfo projectlist = new();
-            projectlist._projectInfo = _db.Project.Find(id);
-            projectlist.userlist = _db.User.ToList();
+            TaskUserViewModel projectlist = new();
+            projectlist.Project = _db.Project.Find(id);
+            projectlist.UserList = _db.User.ToList();
 
-            if (projectlist._projectInfo == null && projectlist.userlist == null)
+            if (projectlist.Project == null && projectlist.UserList == null)
             {
                 return NotFound();
             }

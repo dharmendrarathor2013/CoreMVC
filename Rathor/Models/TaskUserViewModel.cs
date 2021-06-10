@@ -18,6 +18,7 @@ namespace Rathor.Models
         public List<TaskType> TaskTypeList { get; set; }
         public List<Status> StatusList { get; set; }
         public List<User> UserList { get; set; }
+        public Project Project { get; set; }
         public List<Sprint> SprintList { get; set; }
         public Sprint Sprint { get; set; }
         public List<Project> ProjectList { get; set; }

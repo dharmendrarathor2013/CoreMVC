@@ -51,9 +51,9 @@ namespace Rathor.Data
                 .HasForeignKey(b => b.AssignyId);
 
             //One to Many between Project and Sprint
-            //modelBuilder.Entity<Project>().HasMany(c => c.Sprints)
-            //    .WithOne(d => d.Project)
-            //    .HasForeignKey(b => b.projectId);
+            modelBuilder.Entity<Project>().HasMany(c => c.Sprints)
+                .WithOne(d => d.Project)
+                .HasForeignKey(b => b.projectId);
         }
     }
 }

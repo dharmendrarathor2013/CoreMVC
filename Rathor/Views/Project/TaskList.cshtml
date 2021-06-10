@@ -1,0 +1,66 @@
+﻿@model Rathor.Models.SprintDetails
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "User List";
+}
+
+<div class="container p-3">
+    <div class="row p-4">
+        <div class="col p-6">
+            <h2 class="text-primary">Task List</h2>
+        </div>
+    </div>
+    <br /><br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>TaskId</th>
+                <th>Discription</th>
+                <th>Assignee</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.TaskDetailList)
+            {
+            <tr>
+                <td>@item.TaskID</td>
+                <td>@item.Discription</td>
+                <td>
+                   
+                            @if (item.TaskID != null)
+                            {
+                                @foreach (var v1 in Model.UserList)
+                                {
+                                    if (item.AssignyId == v1.AssignyId)
+                                    {
+                                        @v1.Name
+                                    }
+                                }
+                            }
+                </td>
+                <td>
+                    @if (item.TaskID != null)
+                    {
+                        @foreach (var v1 in Model.StatusList)
+                        {
+                            if (item.StatusId == v1.StatusId)
+                            {
+                                @v1.Name
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+                @*<td>@item.Status.Name</td>*@
+                }
+            
+
+            </tbody>
+        </table>
+    </div>
+
+

@@ -1,4 +1,4 @@
-﻿@model Rathor.Models.ProjectInfo
+﻿@model Rathor.Models.TaskUserViewModel
 @{
     ViewData["Title"] = "Delete";
 }
@@ -6,7 +6,7 @@
     Layout = "_Layout";
 }
 <form method="post" asp-action="DeleteProject">
-    <input asp-for="_projectInfo.projectId" hidden />
+    <input asp-for="Project.projectId" hidden />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="border p-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -21,16 +21,16 @@
                         <label>Project Name</label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="_projectInfo.Title" disabled class="form-control" />
+                        <input asp-for="Project.Title" disabled class="form-control" />
                     </div>
 
                 </div>
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="_projectInfo.Description"></label>
+                        <label asp-for="Project.Description"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="_projectInfo.Description" disabled class="form-control" />
+                        <input asp-for="Project.Description" disabled class="form-control" />
                     </div>
                 </div>
 
@@ -39,25 +39,25 @@
                         <label>Assigny</label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="_projectInfo.User.Name" disabled class="form-control" />
+                        <input asp-for="Project.User.Name" disabled class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="_projectInfo.StartDate"></label>
+                        <label asp-for="Project.StartDate"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="_projectInfo.StartDate" disabled class="form-control" />
+                        <input asp-for="Project.StartDate" disabled class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-4">
-                        <label asp-for="_projectInfo.EndDate"></label>
+                        <label asp-for="Project.EndDate"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="_projectInfo.EndDate" disabled class="form-control" />
+                        <input asp-for="Project.EndDate" disabled class="form-control" />
                     </div>
                 </div>
 

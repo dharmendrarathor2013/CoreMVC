@@ -9,5 +9,6 @@ namespace Rathor.Models
     {
         public List<Project> _projectInfo { get; set; }
         public List<User> User { get; set; }
+        
     }
 }

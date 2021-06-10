@@ -38,7 +38,7 @@ namespace Rathor.Models
         public Boolean IsDeleted { get; set; }
         public int CreatedBy { get; set; }
         public int ModifiedBy { get; set; }
-        public int projectId { set; get; }
+        public int? projectId { set; get; }
         public ApplicationDbContext Db { get; }
 
         public virtual ICollection<TaskDetail> TaskDetail { get; set; }

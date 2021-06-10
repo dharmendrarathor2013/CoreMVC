@@ -64,30 +64,7 @@
                     <td>@item.CreateDate</td>
                     <td>@item.LastModificationDate</td>
                     
-                        @*@foreach (var file in item.Files.FilePath)
-                        {
-
-                            <div class="w-75 btn-group" role="group">
-                                @{
-                                        var data = file;
-                                    <a href="~/Uploaded_files/@data" target="_blank" class="btn btn-primary mx-2"> <i class="fas fa-file-download"></i></a>
-                                }
-                            </div>
-                        }*@
-
-                    @*@foreach (var file in Model.Files)
-                {
-
-                    <div class="w-75 btn-group" role="group">
-                        @{
-                            var data = file.FilePath;
-                            <a href="~/Uploaded_files/@data" target="_blank" class="btn btn-primary mx-2"> <i class="fas fa-file-download"></i></a>
-                        }
-                    </div>
-                }*@
-                    @*<a asp-controller="taskdetail" asp-route-id="@item.TaskID" asp-action="Download" target="_blank" class="btn btn-primary mx-2">
-                    <i class="fas fa-file-download"></i>
-                </a>*@
+                       
                     <td class="text-center">
                         <div class="w-75 btn-group" role="group">
                             <a asp-controller="taskdetail" asp-route-id="@item.TaskID" asp-action="edit" class="btn btn-primary mx-2">
